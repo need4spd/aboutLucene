@@ -1,7 +1,7 @@
 apply plugin: 'eclipse'
 apply plugin: 'java'
 
-group = 'lucene-3.x'
+group = 'com.tistory.devyongsik'
 version = '0.5-SNAPSHOT'
 
 def versions = [
