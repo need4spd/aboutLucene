@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.FieldType.NumericType;
 import org.apache.lucene.document.IntField;
@@ -20,6 +21,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.LockObtainFailedException;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.BytesRef;
+import org.apache.lucene.util.NumericUtils;
 import org.apache.lucene.util.Version;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,8 +53,12 @@ public class NumericFieldTest {
 			fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
 			fieldType.setStoreTermVectors(false);
 			fieldType.setNumericType(NumericType.INT);
+			fieldType.setNumericPrecisionStep(32);
 			
-			doc.add(new IntField("contents", contents[i], fieldType));
+			Field intField = new IntField("contents", contents[i], fieldType);
+			
+			
+			doc.add(intField);
 			
 			indexWriter.addDocument(doc);
 		}
@@ -74,7 +80,7 @@ public class NumericFieldTest {
 			
 			BytesRef term = null;
 			while ((term = termsEnum.next()) != null) {
-				System.out.println("doc Freq of ["+term.bytes+"] : " + termsEnum.docFreq());
+				System.out.println("doc Freq of ["+NumericUtils.prefixCodedToInt(term)+"] : " + termsEnum.docFreq());
 				System.out.println("total term Freq of ["+term.utf8ToString()+"] : " + termsEnum.totalTermFreq());
 				
 				System.out.println("------------------------------------");
