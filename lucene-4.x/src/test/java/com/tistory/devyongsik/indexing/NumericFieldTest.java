@@ -53,7 +53,7 @@ public class NumericFieldTest {
 			fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
 			fieldType.setStoreTermVectors(false);
 			fieldType.setNumericType(NumericType.INT);
-			fieldType.setNumericPrecisionStep(32);
+			fieldType.setNumericPrecisionStep(Integer.MAX_VALUE);
 			
 			Field intField = new IntField("contents", contents[i], fieldType);
 			
