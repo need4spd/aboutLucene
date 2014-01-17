@@ -26,6 +26,8 @@ public class AnalyzerUsageSampleTest {
 		PositionIncrementAttribute posIncrAtt = tokenStream.addAttribute(PositionIncrementAttribute.class);
 		OffsetAttribute offsetAtt = tokenStream.addAttribute(OffsetAttribute.class);
 	    
+		tokenStream.reset();
+		
 	    while (tokenStream.incrementToken()) {
 	      String text = termAtt.toString();
 	      int postIncrAttr = posIncrAtt.getPositionIncrement();
