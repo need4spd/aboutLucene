@@ -1,5 +1,9 @@
-target
-.settings
+target/
+.settings/
 .project
 .classpath
-bin
+bin/
+aboutLucene.iml
+.idea/
+**/*.iml
+out/
