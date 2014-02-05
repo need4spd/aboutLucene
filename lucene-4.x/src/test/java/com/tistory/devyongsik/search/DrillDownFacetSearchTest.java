@@ -121,6 +121,8 @@ public class DrillDownFacetSearchTest {
                 int numSubResults = resultNode.subResults.size();
                 String facetName = resultNode.label.toString();
 
+                System.out.println("## " + facetName + ": " + numSubResults);
+
                 for (FacetResultNode node : resultNode.subResults) {
                     String label = node.label.toString();
                     Integer count = (int) node.value;
